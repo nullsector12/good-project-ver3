@@ -21,14 +21,20 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
-    implementation 'org.springframework.boot:spring-boot-starter-mustache:2.5.4'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter-mustache:2.5.4'
+
     compileOnly 'org.projectlombok:lombok:1.18.20'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.4'
-    runtimeOnly 'com.h2database:h2:1.4.200'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.4'
+
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:2.5.4'
+//    runtimeOnly 'com.h2database:h2:1.4.200'
+    implementation 'org.springframework.session:spring-session-core'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+
+    // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
+    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.2'
 }
 
 test {

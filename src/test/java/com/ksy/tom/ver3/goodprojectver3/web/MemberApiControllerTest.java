@@ -61,5 +61,24 @@ public class MemberApiControllerTest {
         assertThat(allMembers.get(0).getAccount()).isEqualTo(requestDTO.getAccount());
     }
 
+    @Test
+    public void BaseTimeEntity_확인 () {
+        LocalDateTime now = LocalDateTime.of(2021, 9, 10, 0, 0, 0);
+        memberRepository.save(Member.builder()
+                .account("tom1234")
+                .password("test1234")
+                .name("Tom")
+                .email("Tom1234@naver.com")
+                .build()
+        );
+
+        List<Member> memberList = memberRepository.findAll();
+
+        Member member = memberList.get(0);
+
+        assertThat(member.getCreatedAt()).isAfter(now);
+        assertThat(member.getModifiedAt()).isAfter(now);
+    }
+
 
 }

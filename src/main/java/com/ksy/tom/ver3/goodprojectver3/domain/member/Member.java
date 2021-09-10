@@ -1,5 +1,6 @@
 package com.ksy.tom.ver3.goodprojectver3.domain.member;
 
+import com.ksy.tom.ver3.goodprojectver3.domain.commons.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Member {
+public class Member extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

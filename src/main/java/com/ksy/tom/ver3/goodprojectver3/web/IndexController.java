@@ -11,4 +11,9 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/member/register")
+    public String memberLogin() {
+        return "register-member";
+    }
+
 }

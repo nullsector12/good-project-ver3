@@ -11,7 +11,12 @@ const main = {
             _this.login();
         });
 
-    },
+        $('#btn-logout').on('click', function () {
+           _this.logout();
+        });
+    }
+
+    ,
     save: function () {
         let data = {
             account: $('#account').val(),
@@ -47,6 +52,19 @@ const main = {
             data: JSON.stringify(data)
         }).done(function (e) {
             alert('로그인 되었습니다. 안녕하세요. '+ e.name + "님!");
+            window.location.href = '/';
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+    logout: function () {
+        $.ajax({
+            type: 'GET',
+            url: '/tom_api/v1/member/logout',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+        }).done(function (e) {
+            alert('로그아웃 되었습니다. 안녕히 가세요.');
             window.location.href = '/';
         }).fail(function (error) {
             alert(JSON.stringify(error));

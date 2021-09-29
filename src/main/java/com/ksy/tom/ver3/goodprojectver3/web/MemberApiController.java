@@ -6,11 +6,13 @@ import com.ksy.tom.ver3.goodprojectver3.web.dto.RegisterMemberRequestDTO;
 import com.ksy.tom.ver3.goodprojectver3.web.param.MemberLoginParam;
 import com.ksy.tom.ver3.goodprojectver3.web.result.LoginFrontDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @RestController
@@ -23,18 +25,21 @@ public class MemberApiController {
     private final MemberService memberService;
 
     @PostMapping("/login")
-    public LoginFrontDTO getLogin (@RequestBody MemberLoginParam param, HttpServletRequest request, HttpServletResponse response) {
+    public LoginFrontDTO getLogin (@RequestBody MemberLoginParam param, HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
 
         LoginFrontDTO frontDTO = memberService.loginMember(param, request, response);
 
-        loginResponseDTO.setName(frontDTO.getName());
-        loginResponseDTO.setEmail(frontDTO.getEmail());
+        session.setAttribute("user", frontDTO);
+        model.addAttribute("name", frontDTO.getName());
+        model.addAttribute("email", frontDTO.getEmail());
         return frontDTO;
     }
 
-    @GetMapping("/login_member_session")
-    public String getSessionInfo() {
-        return loginResponseDTO.toString();
+    @GetMapping("/logout")
+    public String logout (HttpSession session) {
+        session.removeAttribute("user");
+
+        return "redirect:/";
     }
 
 

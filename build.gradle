@@ -30,7 +30,7 @@ dependencies {
 
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:2.5.4'
 //    runtimeOnly 'com.h2database:h2:1.4.200'
-    implementation 'org.springframework.session:spring-session-core'
+    implementation 'org.springframework.session:spring-session-core:2.5.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
 
     // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client

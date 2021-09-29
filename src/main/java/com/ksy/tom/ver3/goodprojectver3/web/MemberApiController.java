@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,9 +23,9 @@ public class MemberApiController {
     private final MemberService memberService;
 
     @PostMapping("/login")
-    public LoginFrontDTO getLogin (@RequestBody MemberLoginParam param) {
+    public LoginFrontDTO getLogin (@RequestBody MemberLoginParam param, HttpServletRequest request, HttpServletResponse response) {
 
-        LoginFrontDTO frontDTO = memberService.loginMember(param);
+        LoginFrontDTO frontDTO = memberService.loginMember(param, request, response);
 
         loginResponseDTO.setName(frontDTO.getName());
         loginResponseDTO.setEmail(frontDTO.getEmail());
